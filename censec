@@ -1,0 +1,462 @@
+
+
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><link href="css/Estilo.css" rel="stylesheet" /><title>
+	CENSEC – Central Notarial de Serviços Eletrônicos Compartilhados
+</title><link rel="stylesheet" href="css/warning.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-84991623-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+
+
+    <style>
+        .PopUpFundo {
+            width: 100%;
+            height: 100%;
+        }
+
+        .BotaoSair {
+            width: 25px;
+            height: 25px;
+            border-radius: 15px 15px 15px 15px;
+        }
+    </style>
+
+    <script>
+        function get_browser_info() {
+            var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                return { name: 'IE', version: (tem[1] || '') };
+            }
+            if (M[1] === 'Chrome') {
+                tem = ua.match(/\bOPR\/(\d+)/)
+                if (tem != null) { return { name: 'Opera', version: tem[1] }; }
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) { M.splice(1, 1, tem[1]); }
+            return {
+                name: M[0],
+                version: M[1]
+            };
+        }
+
+        function chamaPG() {
+            window.open('../Cadastro/politicaCookie.aspx', '_blank');
+        }
+
+        function retornaBrowser() {
+            return "Opera|Firefox|IE|MSIE";
+        }
+
+        function ValidaBrowser() {
+            var Validar = retornaBrowser().split("|");
+            var browser = get_browser_info();
+            var mostrarErro = true;
+
+            for (i = 0; i < Validar.length; i++) {
+                if (browser.name == Validar[i]) {
+                    if ((Validar[i] == "IE" || Validar[i] == "MSIE") && browser.version >= 9) {
+                        mostrarErro = false;
+                    }
+                    else if (Validar[i] != "IE" && Validar[i] != "MSIE") {
+                        mostrarErro = false;
+                    }
+                }
+            }
+            if (mostrarErro) {
+                //document.getElementById('divBrowserIncompativel').style.display = "block";
+            }
+
+
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;  Hidden by default
+            position: fixed; /* Stay in place */
+            z-index: 99999; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+
+        .quebraParagrafo {
+            margin-top: 10px;
+        }
+
+        .hrModal {
+            border: 0;
+            clear: both;
+            display: block;
+            width: 100%;
+            background-color: #808080;
+            height: 1px;
+        }
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="warning" id="warning">
+        <div class="wrapper-content">
+            <a href="#" class="btn-close"><i>
+                <img src="img/btn-close.png" alt="" /></i></a>
+            <h3>Política de cookies</h3>
+            <p>
+                Usamos os cookies (proprietários e de terceiros) para ajudá-lo a usar nossos sites e exibir anúncios de acordo com as configurações do seu navegador. Ao acessar nossas páginas, você concorda com o uso dos cookies. Para mais informações sobre cookies, consulte nossa <a onclick="chamaPG()" style="cursor: pointer;">Política de Cookies</a>.
+            </p>
+        </div>
+    </div>
+    <form name="form1" method="post" action="Home.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExODAxMDYyNjVkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBQxJbWFnZUJ1dHRvbjEFDEltYWdlQnV0dG9uMgUMSW1hZ2VCdXR0b24zsM4yII+dubuBqAafiXmMlhe/PTw=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/CENSEC/WebResource.axd?d=oQTo2ZoyBTpQ0S6ziRqxRw-0II1AFmFl-dGNJRaJV-QmdBL4MLTqzT7RXK4PlXxIzD6SiTVlxZ-iwcsIFu9SBvSuM401&amp;t=636284525271971599" type="text/javascript"></script>
+
+
+<script src="/CENSEC/ScriptResource.axd?d=c_W89XdCzHS7lI-OD0iwiuSZ2T1_WS__f5kqNQ3geLYfu151fB5ibj0rPgsvSyQCgR6FeGesXo88mIotKoNHYKuXsKjKlzEMOTI1TuR2vsdiqrRFJoy1wgPKqRTyc6BCkKyZc6kAu3u-sxnxejmMDm45jWFV8uizQzCG3aom3Kch340W0&amp;t=ffffffffbcb9b94a" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/CENSEC/ScriptResource.axd?d=cXpXmWUIM-axM9UM9Zs9zq7JMXG7zd_mv8eHS1LWpa7usxFOSQT_3ogGuKe5-e5-dopJESVViCzsneE9lqRXAj28ihY1iIYn39K3OkAdSGIhio45DfGelT99VpKt9jtlnazdDAFk-_bGbAbLD1GF17veUdJ00M-ampVwJoNxmsPBztnk0&amp;t=ffffffffbcb9b94a" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=5ryUo1FyHh0JYhgNw14RtRtKCxhVl_tQn-uYH5AZK4vwGg8SMva_D5ZfisIzF0sI3juTqTvSHxpAf2XYR3JCOHAcRsXFiJiEClCqjzmOYlGEDMAPtt307Kmm-K00vjWXGfrGd7Xz6Q6EDR0P1ZZ4UyDHzws1&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=dZD71sZl3ToaXuqEYIYrLw9jTFJO-ZCNS_xOcdqP4U1yMm4JkoBb01LHj8hQMChcluzZTCP-c1-4Uw9UmV_kKiJCAAIdDEv4LpIm2PM_AMSAFLOpuTZGZS3tv8VswFb0ZB5ffwIdO5CzInps9xaeypSPaZQ1&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=1q6UuKuflV5xqs31YtR6zq-EGaiWGaucCabvdqch4WS9s80WKZx1FXq0jrTwxvp83uvkJiuHTLWJ2PlDHxIXWHmVp8gVqlptcgf9p0kBthkWQ3_oKCOzFr_gslvo3-_Uixkoh_gxHd44eNa_OHjB7Qx3dbOl5d3IkBsrcd8Sc7bdD-IH0&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=GD_b2bv_Kh8q-cS_0jQ1U8_4DnogAE2i1M94MHCFAzpmo6LAqiNISB4A2VLwvmk6q0rItgU-f79FiBh4TrzHKGXEHv7oYLyjupmj-2MQp4kIrBRuFYDQXqNfqOYnmfmAWWMc3E0swCEw1hXT4FuzSni65LQ1&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=bEkUP7FQplIKzjRc3tPYgMSrY7fbGK5w0Nz6iCtc4KsUUkFyCG77wpGAWVYL2Ifhousaqx3mfBppEm9-nPADKdKYWZvhS7FS4qfpI9I-tP2EHh82QpuUMP4nOPvH4Jd7CkhDPVkFjZgker2j2GLxXCZaAELcil2u5h-yglMEK5lmTKVu0&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=V2M9bkXO8MUUS7TVatsmmm6X5_smR8h6ycoRhK64ljJmtyEDTfm4s7GFXidEkND8GP6L9cpvWVsYdRFu60giuqu1LRprqs880nH8t5HO-U2E79H5l6CMQMmXNq3-UTUNdMlRMwm8y80SUryOshU8UgOKfopWCMpf_n4AiEsKmloFSHDkQxMC07iNj6OqQCJTJizN6Q2&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=85fcuRvADxi5oHpIuY7oEy0H0m-F1tnaAeaB84gtCwHd7q43p_IZj6kXx_eIuT2wrWQWGOlqaZILTGbPrbR-LypGrHUVrRyxPWm6wq0LJdgJDKjNkHHvCzcTJAefvH25sTTo3T0TlYihihfhekIxctigavrw1LPx-S1Cc9hF9zOW9IZV0&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=HB5DxQBfAmXtBAWWO_8Y14aTpz9scYQ_aydiRKSxiDm8FJn7aUdFzReTo2mskr83YPUNWkE-RBUTKZ3zZVsC7WwXTKE3AJzrCDwQbqJBOKEjEqyb6R2eQnLpFonXe3J06w8CSqGnMjrPbFHe7xHUt3RoBHWUIwlC7muWU-LQGS_N2_zt0&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<script src="/CENSEC/ScriptResource.axd?d=MF2LIyp13-qsqbt2hhIXNFoHxE-YuJnfDI8c1f1OzWi-GkwgIppvy-A_UbaD0ToSVoX86NQ7cL7gdRKW5yHqU_1iCvCxfBadWtdUrMR6KRXBq3X4JoVbhxhlKMJWNQE8pYtv8eudN7Yz0-cFHK0kl5syy0OJHcxxs6JeBgUgbcVcQl6J0&amp;t=ffffffff9b7d03cf" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="50DCBDCB" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBgLi+ZiXBwKV/ZTFCgLSwpnTCALSwtXkAgLSwsGJCgKxg5XCAeBM+TFRLmdu93DsuaHRwg8eqg0J" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl04', document.getElementById('form1'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls([], [], [], 90);
+//]]>
+</script>
+
+        <div class="header" style="text-align: center;">
+            <img src="img/logo-notarial.jpg" alt="" style="float: left;" />
+            
+
+            
+            <a href="http://www.acnotarial.com.br/" target="_blank">
+                <img src="img/banner-acnotarial_250x86.gif" alt="" style="float: right; margin: 6px 0 0 0;" /></a>
+        </div>
+        <div style="width: 90%; text-align: center; margin-top: -65px; float: left; color: red; display: none" id="divBrowserIncompativel">
+            <img src="img/Atencao.png" style="width: 5%" />
+            Atenção, este navegador é incompatível com a <b style="color: red">CENSEC</b> , para maiores informações
+            <a id="lnkAbrirModal" href="javascript:__doPostBack('lnkAbrirModal','')">clique aqui.</a>
+
+
+        </div>
+        <div class="banner-left" style="height: 176px; background-position-y: -45px;">
+        </div>
+        <div class="banner-right" style="height: 176px;">
+            <h1 style="margin-top: 12px;">O que é</h1>
+            <p>
+                A Central Notarial de Serviços Eletrônicos Compartilhados  - CENSEC
+ - é um sistema administrado pelo Colégio Notarial do Brasil - Conselho
+Federal - CNB-CF - cuja finalidade é gerenciar banco de dados com
+informações sobre existência de testamentos, procurações e escrituras
+públicas de qualquer natureza, inclusive separações, divórcios e 
+inventários lavradas em todos os cartórios do Brasil.
+            </p>
+        </div>
+        <ul class="itens-home">
+            <a href="cadastro/login.aspx" target="_blank">
+                <li>
+                    <img src="img/ico-1.png" alt="" />
+                    <h2>Acesso Restrito</h2>
+                    <p>
+                        Acesso exclusivo para operadores da 
+CENSEC e usuários autorizados pelo CNJ
+                    </p>
+                    <div class="sombra"></div>
+                    <!--<input type="image" name="ImageButton1" id="ImageButton1" src="img/bt-entrar.png" style="border-width:0px;" />-->
+                    <img src="img/bt-entrar.png" class="imgEntrar" />
+                </li>
+            </a>
+            <a href="https://censec.freshdesk.com/support/home" target="_blank">
+                <li>
+                    <img src="img/ico_2.png" alt="" />
+                    <h2>Atendimento e Suporte</h2>
+                    <p>
+                        Para usuários comuns e desenvolvedores de sistemas
+                    </p>
+                    <div class="sombra"></div>
+                    <!--<input type="image" name="ImageButton2" id="ImageButton2" src="img/bt-entrar.png" style="border-width:0px;" />-->
+                    <img src="img/bt-entrar.png" class="imgEntrar" />
+                </li>
+            </a>
+            <a href="http://www.buscatestamento.org.br" target="_blank">
+                <li>
+                    <img src="img/ico-3.png" alt="" />
+                    <h2>Busca de Testamento</h2>
+                    <p style="height: 32px;">Informação sobre existência de testamento.</p>
+                    <div class="sombra"></div>
+                    <!--<input type="image" name="ImageButton3" id="ImageButton3" src="img/bt-entrar.png" style="border-width:0px;" />-->
+                    <img src="img/bt-entrar.png" class="imgEntrar" />
+                </li>
+            </a>
+
+            <a href="Cadastro/consultacesdi.aspx" target="_blank">
+                <li>
+                    <img src="img/ico-4.png" alt="" />
+                    <h2>Consulta CESDI</h2>
+                    <p>
+                        Consulta livre aos atos de Escrituras de 
+Separações, Divórcios e Inventários.
+                    </p>
+                    <div class="sombra"></div>
+                    
+                    <img src="img/bt-entrar.png" class="imgEntrar" />
+                </li>
+            </a>
+            <div style="margin-left: 25%">
+                <a href="Cadastro/TramiteCertidao" target="_blank">
+                    <li style="display: none">
+                        <img src="img/ico-3.png" alt="" />
+                        <h2>Serviços Online</h2>
+                        <p>
+                            Acessos aos Serviços de pedido de Certidão de forma Online.
+                        </p>
+                        <div class="sombra"></div>
+                        <img src="img/bt-entrar.png" class="imgEntrar" />
+                    </li>
+                </a>
+                <a href="Cadastro/consultacep.aspx" target="_blank">
+                <li>
+                    <img src="img/ico-5.png" alt="" />
+                    <h2>Consulta DAV (Testamento Vital)</h2>
+                    <p>
+                        Consulta livre aos atos de Escrituras de 
+Diretivas Antecipadas de Vontade.
+                    </p>
+                    <div class="sombra"></div>
+                    
+                    <img src="img/bt-entrar.png" class="imgEntrar" />
+                </li>
+            </a>
+            </div>
+
+        </ul>
+
+        <div class="footer" style="padding-top: 7px; margin-top: 20px; padding-bottom: 7px;">
+            Censec | Rua Bela Cintra, 746 - 12º Andar - Conjunto 121 - CEP 01415-000 - São Paulo - SP
+            <br />
+            Fone: (11) 3122-6287 | (11) 3122-6277 | Whatsapp: (11) 9-8985-2022 | www.censec.org.br
+        </div>
+
+
+        
+        <div id="pnlModal">
+	
+            <div style="width: 600px; height: 430px; background-color: white; border: 5px solid #0c4850">
+                <div style="padding: 10px 10px 10px">
+                    <p style="width: 100%; text-align: center; color: #0e5159">Navegadores compatíveis com a Censec </p>
+                    <br />
+                    <p>Prezados,</p>
+                    <br />
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tendo em vista o lançamento da última versão do navegador Google Chrome (44.0.2403.157m), o suporte ao Java foi descontinuado. 
+                    Como o acesso à Censec utiliza um plugin do Java para executar o applet do certificado digital, é necessário que o mesmo seja 
+                    compatível com o navegador.
+                    </p>
+                    <br />
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Por conta disso, solicitamos a todos que passem a utilizar outras opções como o Mozilla Firefox, Ópera ou Internet 
+                    Explorer(versões 9, 10 e 11) para que não haja problema de acesso à central.
+                    </p>
+                    <br />
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Com o lançamento do Windows 10 a Microsoft está estimulando a atualização dos computadores para o novo sistema operacional, cujo navegador padrão é o Edge, o qual também não executa o plugin do aplicativo de acesso à Censec.
+                    </p>
+                    <br />
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Até o momento, não há posicionamento oficial das empresas em relação ao retorno da compatibilidade.
+                    </p>
+                    <br />
+                    <p>
+                        Atenciosamente,
+                    </p>
+                    <br />
+                    <p>
+                        Equipe Censec.
+                    </p>
+                    <br />
+                    <input type="submit" name="btnFechar" value="X" id="btnFechar" class="BotaoSair" style="float: right" />
+
+                </div>
+
+
+            </div>
+        
+</div>
+
+
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"PopUpFundo","CancelControlID":"btnFechar","PopupControlID":"pnlModal","dynamicServicePath":"/Censec/Home.aspx","id":"ConfirmarExclusao_ModalPopupExtender"}, null, null, $get("lnkAbrirModal"));
+});
+//]]>
+</script>
+</form>
+
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Comunicado importante sobre expediente de fim de ano na Censec
+              <p class="quebraParagrafo"></p>
+              <p style="color: #bb0202"> ANTECIPE SEUS PEDIDOS DE CERTIDÃO </p></h3>
+              <p class="quebraParagrafo"></p>
+              <hr class="hrModal" />
+              <p class="quebraParagrafo"></p>
+              <p>A equipe Censec informa que <span style="font-weight:bold; text-decoration: underline">NÃO</span> haverá expediente institucional nos dias 24 e 31 de dezembro, em virtude das festas de fim de ano.</p>
+              <p class="quebraParagrafo"></p>
+              <br />
+              <p>Assim, as certidões de testamentos serão emitidas no prazo legal de até 2 dias úteis após a confirmação de pagamento e/ou desbloqueio, considerando as datas úteis de funcionamento.</p>
+              <p class="quebraParagrafo"></p>
+              <br />
+              <p>Atenciosamente,</p>
+              <p class="quebraParagrafo"></p>
+              <p>Equipe Censec</p>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // Get the modal
+        var modal= document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn= document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span= document.getElementsByClassName("close")[0];
+
+        window.onload = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks the button, open the modal 
+        //btn.onclick = function () {
+        //    modal.style.display = "block";
+        //    return;
+        //}
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick= function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick= function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+
+
+
+    <script>
+        ValidaBrowser();
+    </script>
+    <script src="js/js.cookie.js"></script>
+    <script src="js/warning.js"></script>
+</body>
+</html>
